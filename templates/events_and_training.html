@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_events_and_training %}active{% endblock %}
+{% block body %}
+
+    <div class="d-flex flex-column text-center mb-5 mt-5">
+        <h2 class="display-4 m-0" style="font-size: 30px;"><span class="text-primary">What’s Happening</span></h2>
+    </div>
+
+    {% if all_events %}
+    {% for event in all_events %}
+    <!-- Booking Start -->
+    <div class="container-fluid bg-light mb-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="bg-primary py-5 px-4 px-sm-5" style="">
+                        <span style="color:white; border: 5px solid black; font-size: 52px; margin-left: auto; margin-right: auto;">{{ event.From_Time.date }}</span>
+<!--                        <span style="color:white; border: 5px solid white; font-size: 95px; margin-left: auto; margin-right: auto;  ">{{ event.From_Time.day }}</span>-->
+                    </div>
+                </div>
+                <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
+                    <h1 class="display-4 mb-4"><span class="text-primary"><span style="font-size:32px;">{{ event.title }}</span></span></h1>
+                    <p>{{ event.From_Time }} -<br>
+{{ event.To_Time }}</p>
+                <a href="{% url 'event_details' event.slug %}" class="btn btn-lg btn-primary mt-3 px-4 mb-2">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking Start -->
+    {% endfor %}
+    {% else %}
+    <!-- Booking Start -->
+    <div class="container-fluid bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="d-flex flex-column text-center mb-5 mt-5">
+                    <h2 class="display-4 m-0" style="font-size: 30px;"><span class="text-primary">NO Events</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking Start -->
+
+
+
+    {% endif %}
+
+
+{% endblock %}

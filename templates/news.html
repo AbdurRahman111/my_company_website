@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_news %}active{% endblock %}
+{% block body %}
+
+<!-- Blog Start -->
+    <div class="container pt-5">
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+            <h4 class="text-secondary mb-3">News</h4>
+            <h2 class="display-4 m-0"><span class="text-primary">Whats New?</span></h2>
+        </div>
+
+        {% if all_news %}
+        <div class="row pb-3">
+            {% for news in all_news %}
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 mb-2">
+                    <img class="card-img-top" src="{% if news.image %}{{ news.image.url }}{% else %}{% static 'img/defauld-image.png' %}{% endif %}" alt="{{ news.Title }}" style="height:265px;">
+                    <div class="card-body bg-light p-4">
+                        <h4 class="card-title text-truncate">{{ news.Title }}</h4>
+                        <div class="d-flex mb-3">
+                            <small class="mr-2"><i class="fa fa-user text-muted"></i> {{ news.Author }}</small>
+                            {% if news.Category %}
+                            <small class="mr-2"><i class="fa fa-folder text-muted"></i> {{ news.Category.name }}</small>
+                            {% endif %}
+                            <small class="mr-2"><i class="fa fa-comments text-muted"></i> {{ news.count_total_comments_on_news }}</small>
+                        </div>
+                        <p>{{ news.Short_Description }}</p>
+                        <a class="font-weight-bold" href="{% url 'news_details' news.slug %}">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% else %}
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+            <h4 class="text-secondary mb-3">Nothing to show</h4>
+        </div>
+        {% endif %}
+
+            {% if list %}
+            <div class="col-lg-12">
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center mb-4">
+
+                    <li class="page-item {% if all_news.has_previous %}{% else %}disabled{% endif %}">
+                      <a class="page-link" href="{% if all_news.has_previous %}{% url 'news' %}?page={{all_news.previous_page_number}}{% else %}{% endif %}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                      </a>
+                    </li>
+
+                    {% for i in list %}
+                    <li class="page-item {% if page_num == i %}active{% endif %}"><a class="page-link" href="{% url 'news' %}?page={{i}}">{{i}}</a></li>
+                    {% endfor %}
+
+                    <li class="page-item {% if all_news.has_next  %}{% else %}disabled{% endif %}">
+                      <a class="page-link" href="{% if all_news.has_next  %}{% url 'news' %}?page={{all_news.next_page_number}}{% else %}{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Blog End -->
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_help_and_advice %}active{% endblock %}
+{% block body %}
+
+    <!-- Services Start -->
+    <div class="container-fluid bg-light pt-3">
+        <div class="container py-5">
+            <div class="d-flex flex-column text-center mb-5">
+                <h2 class="display-4 m-0" style="font-size: 30px;">HOW TO GET <span class="text-primary">HELP & ADVICE</span></h2>
+                <h5 class="text-secondary mb-3"><span style="color:black;">Our member organisations provide a variety support services and advice. It might be that you’re looking for legal advice, employment advice, or support with housing needs.</span>
+                </h5>
+
+            </div>
+
+            <div class="row pb-3">
+                {% if all_help_and_advice %}
+                {% for h_a in all_help_and_advice %}
+                <div class="col-md-6 col-lg-4 mb-4" style="">
+                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #109be4; color:white; height: 170px;">
+                        <h3 class="mb-3" style="color:white"><a href="{% url 'details_help_advice' h_a.slug %}" style="color:#FAA416;">{{ h_a.title }}</a></h3>
+                        <p style="font-size:18px; color:white">{{ h_a.short_description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                Nothing to show now !
+                {% endif %}
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #e8873f; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">EDUCATION MATTERS</h3>-->
+
+<!--                        <p style="font-size:18px; color:white">Education support for adults and children.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #C1A008; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">HEALTH & WELLBEING</h3>-->
+<!--                        <p style="font-size:18px; color:white">Services providing support with individual physical and mental health.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #CD16FA; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">EMPLOYMENT & JOBS</h3>-->
+<!--                        <p style="font-size:18px; color:white">Help with job applications, CVs, registering with agencies, etc.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #109be4; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">SOMALI MOSQUES</h3>-->
+<!--                        <p style="font-size:18px; color:white">UK based Somali-led mosques</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #e8873f; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">MUSIC, CULTURE & ARTS</h3>-->
+<!--                        <p style="font-size:18px; color:white">Music, culture & arts activities in the Somali community</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #C1A008; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">SPORT & RECREATION</h3>-->
+<!--                        <p style="font-size:18px; color:white">Using sport as a way of bringing about positive social change</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #CD16FA; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">HOUSING-->
+<!--</h3>-->
+<!--                        <p style="font-size:18px; color:white">Advice and support with housing needs</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 col-lg-4 mb-4" style="">-->
+<!--                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: #109be4; color:white; height: 170px;">-->
+<!--                        <h3 class="mb-3" style="color:white">BENEFITS & DEBT-->
+<!--</h3>-->
+<!--                        <p style="font-size:18px; color:white">Advice and support with benefits, debts, money management, etc.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+{% endblock %}

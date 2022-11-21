@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+<!-- About Start -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+
+                <h2 class="display-4 mb-4"><span class="text-primary"><span style="font-size:55px;">{{ get_org.name }}</span></span></h2>
+                <h4 class="text-secondary mb-3">{{ get_org.title }}</h4>
+                {{ get_org.Long_description | safe }}
+
+                <br>
+                {% if get_org.facebook_link %}
+                    <a href="{{ get_org.facebook_link }}">
+                        <img src="{% static 'img/fb_pic.jpg' %}" style="width:54px; height:50px;">
+                    </a>
+                {% endif %}
+                {% if get_org.twitter_link %}
+                    <a style="margin-left:20px;" href="{{ get_org.twitter_link }}">
+                        <img src="{% static 'img/Twitter-logo.svg.webp' %}" style="width:54px; height:50px;">
+                    </a>
+                {% endif %}
+
+            </div>
+            <div class="col-lg-5">
+                <div class="row px-3">
+                    <div class="col-12 p-0">
+                        {% if get_org.image %}
+                        <img class="img-fluid w-100" src="{{ get_org.image.url }}" alt="">
+                        {% else %}
+                        <img class="img-fluid w-100" src="{% static '' %}img/defauld-image.png" alt="">
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    {% if get_org.Get_in_touch_text %}
+    <!-- Features Start -->
+    <div class="container-fluid bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid w-100" src="{% static '' %}img/getintouch.jpg" alt="">
+                </div>
+                <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
+                    <h4 class="text-secondary mb-3">GET IN TOUCH</h4>
+                    {{ get_org.Get_in_touch_text | safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features End -->
+    {% endif %}
+
+
+
+{% endblock %}

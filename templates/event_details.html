@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_events_and_training %}active{% endblock %}
+{% block body %}
+    <!-- About Start -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+                <h2 class="display-4 mb-4"><span class="text-primary"><span style="font-size:55px;">{{ get_events.title }}</span></span></h2>
+                <h4 class="text-secondary mb-3">{{ get_events.From_Time }} - {{ get_events.To_Time }}</h4><br>
+                <h2>{{ get_events.Via }}</h2>
+                <br>
+                <br>
+                {{ get_events.Details | safe }}
+
+            </div>
+            <div class="col-lg-5">
+                <div class="row px-3">
+                    <div class="col-12 p-0">
+                        {% if get_events.image %}
+                        <img class="img-fluid w-100" src="{{ get_events.image.url }}" alt="">
+                        {% else %}
+<!--                        <img class="img-fluid w-100" src="{% static '' %}img/defauld-image.png" alt="">-->
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+
+
+
+{% endblock %}

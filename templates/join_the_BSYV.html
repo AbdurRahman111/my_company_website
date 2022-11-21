@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+<!-- About Start -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+<!--                <h4 class="text-secondary mb-3">About Us</h4>-->
+                <h1 class="display-4 mb-4"><span class="text-primary">Join the BSYV</span></h1>
+                <p>BSYV members enjoy access to a growing network of the UK&rsquo;s leading Somali oriented organisations. The BSYV runs events throughout the year, offering members various opportunities to get involved and engage with others who seek to influence discourses related to the Somali community in Britain.</p>
+
+            <h2>Benefits of Membership</h2>
+
+            <p>The Council of Somali Organisations exists primarily to organise, promote and represent the interests of our members and of the Somali community. As a member you can specifically get:</p>
+
+            <ul>
+                <li>Access to Policy and Regulations Consultations</li>
+                <li>Access to Working Groups</li>
+                <li>Access to Networking Events</li>
+                <li>Advertise Events, Services and Vacancies on our Website</li>
+                <li>Technical Support on a Range of Organisational Issues</li>
+                <li>Support and Guidance on Grant/Funding Applications&nbsp;</li>
+            </ul>
+                <a href="{% url 'signup_now' %}" class="btn btn-lg btn-primary mt-3 px-4">Sign Up Now</a>
+
+            </div>
+            <div class="col-lg-5">
+                <div class="row px-3">
+                    <div class="col-12 p-0">
+                        <img class="img-fluid w-100" src="{% static 'img/450_join_the_cso_1.jpg' %}" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+{% endblock %}

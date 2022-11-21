@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+<!-- About Start -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+<!--                <h4 class="text-secondary mb-3">About Us</h4>-->
+                <h1 class="display-4 mb-4"><span class="text-primary">{{ get_projects.title }}</span></h1>
+                {{ get_projects.Details | safe}}
+
+            </div>
+            <div class="col-lg-5">
+                <div class="row px-3">
+                    <div class="col-12 p-0">
+                        {% if get_projects.image %}
+                        <img class="img-fluid w-100" src="{{ get_projects.image.url }}" alt="">
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+{% endblock %}

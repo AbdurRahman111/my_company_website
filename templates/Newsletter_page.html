@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+
+            <h1 class="display-4 m-0"><span class="text-primary">The BSYV Newsletter</span></h1>
+        </div>
+        <div class="row justify-content-center">
+            <span>The BSYV newsletter brings you a roundup of news, information and resources relevant to Somali organisations in the UK.</span>
+            <div class="col-12 col-sm-8 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="" id="" novalidate="novalidate"  method="POST" action="{% url 'post_newsletter' %}">{% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" id="newsletter_first_name" placeholder="Fisrt Name" name="newsletter_first_name" required="required" data-validation-required-message="Please enter first name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" id="newsletter_last_name" placeholder="Last Name" required="required" name="newsletter_last_name" data-validation-required-message="Please enter last name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" name="newsletter_email" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+{% endblock %}

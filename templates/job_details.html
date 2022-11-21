@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+
+<!-- About Start -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-12 pb-5 pb-lg-0 px-3 px-lg-5">
+
+                <h1 class="display-4 mb-4"><span class="text-primary">{{ get_jobs.title }}</span></h1>
+                <h4 class="text-secondary mb-3">Last Date : {{ get_jobs.Last_date }}</h4>
+                {{ get_jobs.Description | safe }}
+            </div>
+
+        </div>
+    </div>
+    <!-- About End -->
+
+{% endblock %}

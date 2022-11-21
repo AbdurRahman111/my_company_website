@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+
+<!-- Blog Start -->
+    <div class="container pt-5">
+        <div class="d-flex flex-column text-center mb-5 pt-5">
+            <h4 class="text-secondary mb-3"></h4>
+            <h2 class="display-4 m-0"><span class="text-primary">Our Projects</span></h2>
+        </div>
+
+        {% if all_projects %}
+        <div class="row pb-3">
+            {% for project in all_projects %}
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 mb-2">
+                    <img class="card-img-top" src="{% if project.image %}{{ project.image.url }}{% else %}{% static 'img/defauld-image.png' %}{% endif %}" alt="{{ project.Title }}" style="height:265px;">
+                    <div class="card-body bg-light p-4">
+                        <h4 class="card-title text-truncate">{{ project.title }}</h4>
+
+
+                        <a class="font-weight-bold" href="{% url 'project_details' project.slug %}">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+
+
+<!--            <div class="col-lg-12">-->
+<!--                <nav aria-label="Page navigation">-->
+<!--                  <ul class="pagination justify-content-center mb-4">-->
+<!--                    <li class="page-item disabled">-->
+<!--                      <a class="page-link" href="#" aria-label="Previous">-->
+<!--                        <span aria-hidden="true">&laquo; Previous</span>-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                    <li class="page-item">-->
+<!--                      <a class="page-link" href="#" aria-label="Next">-->
+<!--                        <span aria-hidden="true">Next &raquo;</span>-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </nav>-->
+<!--            </div>-->
+
+
+            {% if list %}
+            <div class="col-lg-12">
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-center mb-4">
+
+                    <li class="page-item {% if all_projects.has_previous %}{% else %}disabled{% endif %}">
+                      <a class="page-link" href="{% if all_projects.has_previous %}{% url 'our_projects' %}?page={{all_projects.previous_page_number}}{% else %}{% endif %}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                      </a>
+                    </li>
+
+                    {% for i in list %}
+                    <li class="page-item {% if page_num == i %}active{% endif %}"><a class="page-link" href="{% url 'our_projects' %}?page={{i}}">{{i}}</a></li>
+                    {% endfor %}
+
+                    <li class="page-item {% if all_projects.has_next  %}{% else %}disabled{% endif %}">
+                      <a class="page-link" href="{% if all_projects.has_next  %}{% url 'our_projects' %}?page={{all_projects.next_page_number}}{% else %}{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Blog End -->
+
+{% endblock %}

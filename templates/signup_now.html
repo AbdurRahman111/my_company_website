@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+
+
+    <!-- Contact Start -->
+<div class="container-fluid pt-5" xmlns="http://www.w3.org/1999/html">
+        <div class="d-flex flex-column text-center mb-3 pt-5">
+            <h1 class="display-4 m-0"><span class="text-primary">Become a BSYV Member</span></h1>
+            <h4 class="text-secondary mb-3"><span style="color:black">To join the BSYV, please complete and submit the form below. <br>Any accompanying documents should be sent via email to info@councilofsomaliorgs.com.</span></h4>
+        </div>
+        <div class="row justify-content-center">
+            <span></span>
+            <div class="col-12 col-sm-8 mb-5">
+                <form class="py-3" method="POST">{% csrf_token %}
+                    <div class="bg-primary py-4 px-4 px-sm-5">
+                        <h4 class="text-secondary"><span style="color:black; font-size:30px;">Your Organisation</span></h4>
+                        <h4 class="text-secondary"><span style="color:black;  font-size:18px;">The information you add in this section will be viewable on the BSYV website.</span></h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control border-0 p-4" name="organisation_name" placeholder="*Organisation Name" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <textarea type="text" class="form-control border-0 p-4" name="address" placeholder="*Address" required="required"></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <select class="custom-select border-0 px-4" style="height: 47px;" required="" name="location_ID">
+                                <option value="">* Nearest City</option>
+                                <option value="North London">North London</option>
+                                <option value="East London">East London</option>
+                                <option value="South London">South London</option>
+                                <option value="West London">West London</option>
+                                <option value="Central London">Central London</option>
+                                <option value="Birmingham">Birmingham</option>
+                                <option value="Bristol">Bristol</option>
+                                <option value="Cardiff">Cardiff</option>
+                                <option value="Coventry">Coventry</option>
+                                <option value="Glasgow">Glasgow</option>
+                                <option value="Leeds">Leeds</option>
+                                <option value="Leicester">Leicester</option>
+                                <option value="Liverpool">Liverpool</option>
+                                <option value="Luton">Luton</option>
+                                <option value="Manchester">Manchester</option>
+                                <option value="Milton Keynes">Milton Keynes</option>
+                                <option value="Northampton">Northampton</option>
+                                <option value="Sheffield">Sheffield</option>
+                                <option value="Slough">Slough</option>
+                                <option value="Southampton">Southampton</option>
+                                <option value="Milton Keynes">Milton Keynes</option>
+                                <option value="Southampton">Southampton</option>
+                                <option value="Glasgow">Glasgow</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="District_or_Borough_Help" class="form-control border-0 p-4" placeholder="District or Borough Help"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Contact_Name" class="form-control border-0 p-4" placeholder="*Contact Name" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email_address" class="form-control border-0 p-4" placeholder="*Email Address" required="required"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="phone_number" class="form-control border-0 p-4" placeholder="*Phone Number" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="website_link" class="form-control border-0 p-4" placeholder="Website"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="Charity_Number" class="form-control border-0 p-4" placeholder="Registered Charity Number Help?"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Company_Registration_Number" class="form-control border-0 p-4" placeholder="Company Registration Number"/>
+                        </div>
+                    </div>
+
+
+                    <div class="bg-primary mt-4 py-4 px-4 px-sm-5">
+                        <h4 class="text-secondary"><span style="color:black; font-size:30px;">Your Contact Details</span></h4>
+                        <h4 class="text-secondary"><span style="color:black;  font-size:18px;">The information you add in this section will <b>not</b> be published on the BSYV website, and will only be used so we can contact you directly in connection with your BSYV membership application.</span></h4>
+
+                        <div class="form-group">
+                            <input type="text" name="Your_first_Name" class="form-control border-0 p-4" placeholder="*Your First Name" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Your_last_Name" class="form-control border-0 p-4" placeholder="*Your Last Name" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" name="your_email" class="form-control border-0 p-4" placeholder="*Your Email" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" name="your_password" class="form-control border-0 p-4" placeholder="*Your Password" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="Role_in_Organisation" class="form-control border-0 p-4" placeholder="*Role in Organisation" required="required" />
+                        </div>
+                    </div>
+
+
+                    <div class="bg-primary mt-4 py-4 px-4 px-sm-5">
+                        <h4 class="text-secondary"><span style="color:black; font-size:30px;">Help & Advice</span></h4>
+                        <h4 class="text-secondary"><span style="color:black;  font-size:18px;">We categorise organisations to make it easier for community members to get the help and advice they need. Please choose any areas that are applicable.</span></h4>
+                        <input type="checkbox" id="legal_advice" name="legal_advice">
+                        <label for="legal_advice" style="color:white;"> Legal Advice</label><br>
+
+                        <input type="checkbox" id="education_matters" name="education_matters">
+                        <label for="education_matters" style="color:white;"> Education Matters</label><br>
+
+                        <input type="checkbox" id="health_wellbeing" name="health_wellbeing">
+                        <label for="health_wellbeing" style="color:white;"> Health & Wellbeing</label><br>
+
+                        <input type="checkbox" id="employment_jobs" name="employment_jobs">
+                        <label for="employment_jobs" style="color:white;"> Employment & Jobs</label><br>
+
+                        <input type="checkbox" id="somali_mosques" name="somali_mosques">
+                        <label for="somali_mosques" style="color:white;"> Somali Mosques</label><br>
+
+                        <input type="checkbox" id="Music_Culture_Arts" name="Music_Culture_Arts">
+                        <label for="Music_Culture_Arts" style="color:white;"> Music, Culture & Arts</label><br>
+
+                        <input type="checkbox" id="Sport_Recreation" name="Sport_Recreation">
+                        <label for="Sport_Recreation" style="color:white;"> Sport & Recreation</label><br>
+
+                        <input type="checkbox" id="Housing" name="Housing">
+                        <label for="Housing" style="color:white;"> Housing</label><br>
+
+                        <input type="checkbox" id="Benefits_Debt" name="Benefits_Debt">
+                        <label for="Benefits_Debt" style="color:white;"> Benefits & Debt</label><br>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-dark btn-block border-0 py-3 mt-4" type="submit">SIGNUP</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+{% endblock %}

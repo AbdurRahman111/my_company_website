@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h2 class="display-4 m-0"><span class="text-primary">Videos</span></h2>
+    </div>
+
+    {% if all_videos_var %}
+    {% for last_video in all_videos_var %}
+
+
+    {% if last_video.id|divisibleby:2 %}
+    <!-- video Start -->
+    <div class="container py-3">
+        <div class="row py-3">
+            <div class="col-lg-5 pb-3 pb-lg-0 px-3 px-lg-5">
+                <h1 class="display-4 mb-4"><span class="text-primary"><span style="font-size:35px;">{{ last_video.title }}</span></span></h1>
+                <p class="mb-4">{{ last_video.short_description }}</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="row px-3" style="width:100%;">
+                    {% video last_video.video_url_link '760x400' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    {% else %}
+    <!-- video Start -->
+    <div class="container py-3">
+        <div class="row py-3">
+            <div class="col-lg-7">
+                <div class="row px-3">
+                    {% video last_video.video_url_link '760x400' %}
+                </div>
+            </div>
+            <div class="col-lg-5 pb-3 pb-lg-0 px-3 px-lg-5">
+                <h1 class="display-4 mb-4"><span class="text-primary"><span style="font-size:35px;">{{ last_video.title }}</span></span></h1>
+                <p class="mb-4">{{ last_video.short_description }}</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- About End -->
+    {% endif %}
+
+
+    {% endfor %}
+    {% else %}
+    Nothing to show
+    {% endif %}
+
+{% endblock %}

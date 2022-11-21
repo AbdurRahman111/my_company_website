@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_help_and_advice %}active{% endblock %}
+{% block body %}
+
+    <!-- Services Start -->
+    <div class="container-fluid bg-light pt-3">
+        <div class="container py-5">
+            <div class="d-flex flex-column text-center mb-5">
+                <h2 class="display-4 m-0" style="font-size: 30px;"><span class="text-primary">{{ get_help_and_advice.title }}</span></h2>
+            </div>
+            {% if filter_org %}
+
+            <div class="row pb-3">
+                {% for org in filter_org %}
+                <div class="col-md-6 col-lg-4 mb-4" style="">
+                    <div class="d-flex flex-column text-center mb-2 p-3 p-sm-3" style="background-color: white; color:black;">
+                        {% if org.image %}
+                        <div style="margin-bottom:20px;">
+                            <img src="{{ org.image.url }}" style="width:30; height:40px;">
+                        </div>
+                        {% endif %}
+                        <h3 class="mb-3" style="color:black"><a href="{% url 'organization_details' org.slug %}">{{ org.name }}</a></h3>
+                        <h5 class="mb-3" style="color:black">{{ org.title }}</h5>
+                        <p style="font-size:18px; color:black">{{ org.short_description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            No Records found !
+            {% endif %}
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+{% endblock %}

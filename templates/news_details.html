@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_news %}active{% endblock %}
+{% block body %}
+
+
+    <!-- Detail Start -->
+    <div class="container py-5">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+                <div class="d-flex flex-column text-left mb-4">
+<!--                    <h4 class="text-secondary mb-3">Blog Detail</h4>-->
+                    <h1 class="mb-3">{{ get_news.Title }}</h1>
+                    <div class="d-index-flex mb-2">
+                        <span class="mr-3"><i class="fa fa-user text-muted"></i> {{ get_news.Author }}</span>
+                        {% if get_news.Category %}
+                        <span class="mr-3"><i class="fa fa-folder text-muted"></i> {{ get_news.Category.name }}</span>
+                        {% endif %}
+                        <span class="mr-3"><i class="fa fa-comments text-muted"></i> {{ get_news.count_total_comments_on_news }}</span>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    {% if get_news.image %}
+                    <img class="img-fluid w-100 mb-4" src="{{ get_news.image.url }}" alt="Image" style="width:80%;">
+                    {% else %}
+                    {% endif %}
+
+                    {{ get_news.Description | safe }}
+
+                </div>
+
+<!--                <div class="media bg-light mb-5 p-4 p-md-5">-->
+<!--                    <img src="{% static '' %}img/user.jpg" alt="Image" class="img-fluid mr-4 mt-1" style="width: 80px;">-->
+<!--                    <div class="media-body">-->
+<!--                        <h5 class="mb-3">John Doe</h5>-->
+<!--                        <p class="m-0">Conset elitr erat vero labore dolor ipsum et diam, tempor eos dolor conset lorem ipsum, ipsum ipsum sit no ut est. Guber ea ipsum erat conset magna kasd amet est magna elitr ea sit justo sed.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="mb-5">
+                    <h3 class="mb-4">{{ get_news.count_total_comments_on_news }} Comments</h3>
+
+                    {% if all_comments %}
+                    {% for com in all_comments %}
+                    <div class="media mb-4">
+                        <img src="{% static 'img/an_user_img.png' %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                        <div class="media-body">
+                            <h6>{{ com.user.username }} <small><i>{{ com.Time }}</i></small></h6>
+                            <p>{{ com.comment }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    No Comments
+                    {% endif %}
+
+
+
+                </div>
+
+                <div style="padding: 30px; background: #f6f6f6;">
+                    <h3 class="mb-4">Leave a comment</h3>
+                    <form method="POST">{% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="message">Comments *</label>
+                            <textarea id="message" name="comment_name" cols="30" rows="5" class="form-control"></textarea>
+                            <input name="var_news_slug" type="hidden" value="{{ get_news.slug }}">
+                        </div>
+                        <div class="form-group mb-0">
+                            {% if request.user.is_authenticated %}
+                            <input type="submit" value="Leave Comment" class="btn btn-primary px-3">
+                            {% else %}
+                            <a class="btn btn-primary px-3" href="{% url 'member_login' %}">Member Log First</a>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-5 mt-lg-0">
+
+                <div class="mb-5">
+                    <h3 class="mb-4">Categories</h3>
+                    <ul class="list-group">
+                        {% if all_news_categories %}
+                        {% for cats in all_news_categories %}
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{% url 'all_news_category' cats.slug %}">
+                            {{ cats.name }}
+                            </a>
+                            <span class="badge badge-primary badge-pill">{{ cats.total_news }}</span>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            No Category
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-4">Recent Post</h3>
+                    {% if recent_news %}
+                    {% for recent in recent_news %}
+                    <div class="d-flex align-items-center border-bottom mb-3 pb-3">
+                        <img class="img-fluid" src="{% if recent.image %}{{ recent.image.url }}{% else %}{% static 'img/defauld-image.png' %}{% endif %}" style="width: 80px; height: 80px;" alt="">
+                        <div class="d-flex flex-column pl-3">
+                            <a class="text-dark mb-2" href="{% url 'news_details' recent.slug %}">{{ recent.Title }}</a>
+                            <div class="d-flex">
+                                <small class="mr-3"><i class="fa fa-user text-muted"></i> {{ recent.Author }}</small>
+                                <small class="mr-3"><i class="fa fa-folder text-muted"></i> {{ recent.Category }}</small>
+                                <small class="mr-3"><i class="fa fa-comments text-muted"></i> {{ recent.count_total_comments_on_news }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    No Recent News
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Detail End -->
+
+
+{% endblock %}

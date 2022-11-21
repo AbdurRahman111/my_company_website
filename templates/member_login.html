@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block active_about_company %}active{% endblock %}
+{% block body %}
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-2" xmlns="">
+        <div class="d-flex flex-column text-center mb-3 pt-5">
+            <h1 class="display-4 m-0"><span class="text-primary">Member Log In</span></h1>
+            <h4 class="text-secondary mb-3"><span style="color:black">Registered BSYV members have exclusive access to the Member Area.</span></h4>
+        </div>
+        <div class="row justify-content-center">
+            <span></span>
+            <div class="col-12 col-sm-8 mb-5">
+                <form class="py-3" method="POST">{% csrf_token %}
+
+                    <div class="bg-primary mt-2 py-4 px-4 px-sm-5">
+                        <h4 class="text-secondary"><span style="color:black; font-size:30px;">Your Contact Details</span></h4>
+                        <h4 class="text-secondary"><span style="color:black;  font-size:18px;">The information you add in this section will <b>not</b> be published on the BSYV website, and will only be used so we can contact you directly in connection with your BSYV membership application.</span></h4>
+                        <div class="form-group">
+                            <input type="email" name="login_email" value="{{ login_email }}" class="form-control border-0 p-4" placeholder="*Your Email" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" name="login_password" class="form-control border-0 p-4" placeholder="*Your Password" required="required" />
+                        </div>
+
+                    </div>
+                    <div>
+                        <button class="btn btn-dark btn-block border-0 py-3 mt-4" type="submit">LOGIN</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+{% endblock %}
